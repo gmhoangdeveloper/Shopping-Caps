@@ -1,8 +1,15 @@
+import "antd/dist/antd.css";
 import React from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import "./App.css";
 import About from "./screens/AboutUs";
+import Dashboard from "./screens/Admin/Dashboard";
+import AllImage from "./screens/Admin/LibraryImage/AllImage";
+import Products from "./screens/Admin/Products/AllProduct";
+import OrderDetailAdmin from "./screens/Admin/OrderDetail/OrderDetailAdmin";
+import UploadImage from "./screens/Admin/LibraryImage/UploadImage";
+import LoginAdmin from "./screens/Admin/LoginAdmin";
 import CheckOutCart from "./screens/CheckOutCart";
 import Contact from "./screens/Contact";
 import HomeScreen from "./screens/HomeScreen";
@@ -16,16 +23,15 @@ import RegistrationScreen1 from "./screens/RegistrationScreen1";
 import Shop from "./screens/Shop";
 import Test from "./screens/Test";
 import ViewDetailsScreen from "./screens/ViewDetailsScreen";
-import LoginAdmin from "./screens/Admin/LoginAdmin";
-import Dashboard from "./screens/Admin/Dashboard";
-import AllImage from "./screens/Admin/LibraryImage/AllImage";
-import UploadImage from "./screens/Admin/LibraryImage/UploadImage";
+
 function App() {
   const { account } = useSelector((state) => state.myaccount);
 
   return (
     <>
       <BrowserRouter>
+        <Route exact={true} path="/admin/products" component={Products} />
+        <Route exact={true} path="/admin/orderdetail" component={OrderDetailAdmin} />
         {/* ADMIN */}
         <Route exact={true} path="/admin/loginadmin" component={LoginAdmin} />
         <Route exact={true} path="/admin/dashboard" component={Dashboard} />

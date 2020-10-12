@@ -7,14 +7,25 @@ import {
 import Axios from "axios";
 
 const listProducts = () => async (dispatch) => {
-  const page = await axios.get("/api/products?page=2");
-  console.log(":))))))))))))", page);
+  // const page = await axios.get("/api/products");
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
     const { data } = await axios.get("/api/products");
-    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data.docs });
+    console.log(":))))))))))))", data);
+    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
   }
 };
-export { listProducts };
+const deleteProducts = (id) => async (dispatch) => {
+  try {
+    const deletedata = await axios.delete("/api/products/" + id);
+    dispatch({ type: PRODUCT_LIST_REQUEST });
+    const { data } = await axios.get("/api/products");
+
+    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: PRODUCT_LIST_FAIL, payload: error.message });
+  }
+};
+export { listProducts, deleteProducts };

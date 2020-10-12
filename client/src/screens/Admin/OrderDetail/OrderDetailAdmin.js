@@ -1,24 +1,21 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
-
-import { Layout, Menu, Breadcrumb, Image } from "antd";
-import {
-  DesktopOutlined,
-  PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import { Link } from "react-router-dom";
-import SiderLeft from "../../components/Admin/SiderLeft";
+import { Layout, Menu, Table } from "antd";
+import React, { useState, useEffect } from "react";
+import SiderLeft from "../../../components/Admin/SiderLeft";
+import OrderDetailGetAll from "../../../actions/Admin/orderdetailAction"
+import { useDispatch } from "react-redux";
 const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
-function Dashboard(props) {
+function OrderDetailAdmin(props) {
   const [state, setstate] = useState({ collapsed: false });
+  // const { account, userordercart } = useSelector((state) => state.myaccount);
+  const dispatch = useDispatch();
   const onCollapse = () => {
-    // console.log("!state.collapsed", !state.collapsed);
     setstate({ collapsed: !state.collapsed });
   };
+useEffect(() => {
+  
+  dispatch(OrderDetailGetAll())
+}, [])
   return (
     <>
       <Layout style={{ minHeight: "100vh" }}>
@@ -31,7 +28,10 @@ function Dashboard(props) {
             <div
               className="site-layout-background"
               style={{ padding: 24, minHeight: 360 }}
-            ></div>
+            >
+              orderdetail
+            </div>
+            {/* <Table columns={columns} dataSource={data} onChange={onChange} /> */}
           </Content>
           <Footer style={{ textAlign: "center" }}>
             Ant Design ©2018 Created by Ant UED
@@ -42,4 +42,4 @@ function Dashboard(props) {
   );
 }
 
-export default Dashboard;
+export default OrderDetailAdmin;

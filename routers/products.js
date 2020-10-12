@@ -26,16 +26,8 @@ router.get("/", async (req, res) => {
       );
       res.json({ paginate, Hoang: "DONE" });
     } else {
-      const paginate = await Products
-        .paginate
-        // {},
-        // {
-        //   // page: page !== undefined ? page : 1,
-        //   // limit: limit !== undefined ? limit : 5,
-        //   sort: { price: "asc" },
-        // }
-        ();
-      res.json(paginate);
+      const products = await Products.find();
+      res.json(products);
     }
   } catch (err) {
     res.status(500).send({ message: "Error in Not Search Product ." });

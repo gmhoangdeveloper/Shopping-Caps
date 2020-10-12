@@ -4,6 +4,22 @@ const jwt = require("jsonwebtoken");
 const PaymentCart = require("../models/paymentcart");
 const jwtfile = require("../jsonwebtoken/jsonwebtoken");
 
+router.get("/all", async (req, res) => {
+  try {
+    const paginate = await PaymentCart.paginate(
+      {},
+      {
+        page: page !== undefined ? page : 1,
+        limit: limit !== undefined ? limit : 5,
+        sort: { price: "asc" },
+      }
+    );
+    res.json({ paginate, message: "Error in IF Search Product ." });
+  } catch (err) {
+    res.status(500).send({ err, message: "Error in Not Search Product ." });
+  }
+});
+
 router.get("/", async (req, res) => {
   const email_search = req.query.email;
   var { page, limit } = req.query;

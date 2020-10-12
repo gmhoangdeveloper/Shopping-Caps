@@ -8,7 +8,7 @@ import AccordionDetails from "@material-ui/core/AccordionDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import SectionMainMenuLeft from "../../../components/Admin/SectionMainMenuLeft";
+import SectionMainMenuLeft from "../../../components/Admin/SiderLeft";
 
 const useStyles = makeStyles((theme) => ({
   buttonBlack: {
